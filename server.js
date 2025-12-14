@@ -82,15 +82,15 @@ app.put('/api/student/:id', async (req, res) => {
 // =============================
 // ⭐ SERVE ANGULAR (Node 22 SAFE)
 // =============================
-app.use(express.static(path.join(__dirname, 'dist/project10')));
+// ⭐ Serve Angular (browser build)
+const angularPath = path.join(__dirname, 'dist/project10/browser');
 
-// Angular fallback (NO wildcard route)
+app.use(express.static(angularPath));
+
+// Angular fallback
 app.use((req, res) => {
-  res.sendFile(
-    path.join(__dirname, 'dist/project10/index.html')
-  );
+  res.sendFile(path.join(angularPath, 'index.html'));
 });
-
 
 // =============================
 // START SERVER
